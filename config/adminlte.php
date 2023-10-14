@@ -312,8 +312,8 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Categoría',
-            'url'         => 'admin/pages',
+            'text'        => 'Gestionar Categoría',
+            'url'         => 'categorias',
             'icon'        => 'fas fa-fw fa-columns'
         ],
         [
