@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CategoriaModel extends Model
 {
     use HasFactory;
-    
+
     public $table = "categorias";
 
     /**
@@ -26,4 +26,9 @@ class CategoriaModel extends Model
     protected $casts = [
         'id' => 'integer',
     ];
+
+    public function productos()
+    {
+        return $this->hasMany(Producto::class);
+    }
 }

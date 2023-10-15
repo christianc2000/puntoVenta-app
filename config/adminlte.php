@@ -317,16 +317,16 @@ return [
             'icon'        => 'fas fa-fw fa-columns'
         ],
         [
-            'text'        => 'Producto',
-            'url'         => 'admin/pages',
-            'icon'        => 'fas fa-fw fa-solid fa-tag'
+            'text'        => 'Gestionar Producto',
+            'url'         => 'productos',
+            'icon'        => 'fas fa-carrot'
         ],
         [
             'text'        => 'Venta',
             'url'         => 'admin/pages',
             'icon'        => 'fas fa-fw fa-shopping-cart'
         ],
-        
+
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
