@@ -24,11 +24,11 @@
         <a class="btn btn-sm btn-warning" href="{{ route('categorias.create') }}">Añadir</a>
       </div>
     </div>
-    
+
       @if(count($categorias) >= 1)
         <div class="row">
           <div class="col">
-            <div class="card">              
+            <div class="card">
               <!-- Card header -->
               <div class="card-header border-0">
                 <h3 class="mb-0">Categorías</h3>
@@ -38,7 +38,7 @@
                 <table class="table align-items-center table-flush">
                   <thead class="thead-light">
                     <tr>
-                      <th scope="col" class="sort" data-sort="codigo">Id</th>                          
+                      <th scope="col" class="sort" data-sort="codigo">Id</th>
                       <th scope="col" class="sort" data-sort="nombre">Nombre</th>
                       <th scope="col" class="sort" data-sort="fecha">Fecha de adición</th>
                       <th scope="col" class="sort" data-sort="accion" colspan="2">Opciones</th>
@@ -47,17 +47,17 @@
                   <tbody class="list">
                     @foreach($categorias as $categoria)
                       <tr>
-                          <td>{{ $categoria->id }}</td>                          
+                          <td>{{ $categoria->id }}</td>
                           <td>{{ $categoria->nombre }}</td>
                           <td>{{ $categoria->created_at->format('d-m-Y') }}</td>
-                          <td class="tdDatos">                            
-                                                         
-                            <a class="btn" style="padding: 5px; width: 30px !important;" href="{{ route('categorias.edit', $categoria->id) }}" >                              
-                              <i class="fas fa-pen-square" style="color: #F39C12;"></i>
-                            </a>                                                                    
-                          </td>   
                           <td class="tdDatos">
-                            <form action="{{ route('categorias.destroy', $categoria->id) }}" method="POST">                              
+
+                            <a class="btn" style="padding: 5px; width: 30px !important;" href="{{ route('categorias.edit', $categoria->id) }}" >
+                              <i class="fas fa-pen-square" style="color: #F39C12;"></i>
+                            </a>
+                          </td>
+                          <td class="tdDatos">
+                            <form action="{{ route('categorias.destroy', $categoria->id) }}" method="POST">
                               @csrf
                               @method('DELETE')
                               <button class="btn" style="padding: 5px; width: 30px;" type="submit">
@@ -66,13 +66,13 @@
                             </form>
                           </td>
                       </tr>
-                    @endforeach       
-                    
-                    
+                    @endforeach
+
+
                   </tbody>
                 </table>
               </div>
-              
+
             </div>
           </div>
           @else
@@ -81,7 +81,7 @@
           </div>
           @endif
         </div>
-        
+
     </div>
 @stop
 
@@ -91,5 +91,5 @@
 
 @section('js')
     <script> console.log('Hi!'); </script>
-   
+
 @stop
