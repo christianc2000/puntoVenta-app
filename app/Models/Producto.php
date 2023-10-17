@@ -19,4 +19,9 @@ class Producto extends Model
     {
         return $this->belongsTo(CategoriaModel::class);
     }
+
+    public function detallesVenta()
+    {
+        return $this->hasMany(DetalleVenta::class, 'producto_id');
+    }
 }

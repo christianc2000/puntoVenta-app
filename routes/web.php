@@ -22,3 +22,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('categorias','App\Http\Controllers\CategoriaController');
 Route::resource('productos','App\Http\Controllers\ProductoController');
+Route::resource('ventas','App\Http\Controllers\VentaController');
+
+Route::get('/buscar-productos', [App\Http\Controllers\VentaController::class,'buscarProductos']);
+Route::get('/obtener-detalles-producto',[App\Http\Controllers\VentaController::class,'obtenerDetallesProducto']);

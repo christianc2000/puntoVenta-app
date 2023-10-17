@@ -322,10 +322,11 @@ return [
             'icon'        => 'fas fa-carrot'
         ],
         [
-            'text'        => 'Venta',
-            'url'         => 'admin/pages',
-            'icon'        => 'fas fa-fw fa-shopping-cart'
+            'text'    => 'Ventas',
+            'icon'    => 'fas fa-fw fa-shopping-cart',
+            'url'  => 'ventas',
         ],
+
 
         ['header' => 'account_settings'],
         [
