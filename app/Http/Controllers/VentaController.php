@@ -17,8 +17,7 @@ class VentaController extends Controller
     public function index()
     {
 
-        $notaventas = NotaVenta::all();
-
+        $notaventas = NotaVenta::getOrderFechaDesc();
         return view('venta.index', compact('notaventas'));
     }
 
@@ -47,7 +46,7 @@ class VentaController extends Controller
 
         // Por ejemplo, supongamos que tienes un modelo Product y quieres obtener los detalles de un producto:
         $producto = Producto::find($productoId);
-       
+
         return response()->json($producto);
     }
     /**
@@ -58,7 +57,23 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $carrito = json_decode($request->productos);
+        $productos_carrito = $carrito->productos;
+        $total = json_decode($carrito->total);
+
+        $nota_venta = NotaVenta::create(['total' => $total]);
+        foreach ($productos_carrito as $producto) {
+            DetalleVenta::create([
+                'precio_unitario' => $producto->precio,
+                'cantidad' => $producto->cantidad,
+                'sub_total' => $producto->costo,
+                'producto_id' => $producto->id,
+                'nota_venta_id' => $nota_venta->id
+            ]);
+        }
+
+        return redirect()->route('ventas.index')->with('success', 'Venta registrada exitosamente.');
     }
 
     /**
@@ -69,9 +84,26 @@ class VentaController extends Controller
      */
     public function show($id)
     {
-        //
+        $nota_venta = NotaVenta::find($id);
+        if (isset($nota_venta)) {
+            $detalleVenta = DetalleVenta::with('producto')->where('nota_venta_id', $nota_venta->id)->get();
+            return view('venta.show', compact('detalleVenta', 'nota_venta'));
+        } else {
+            return redirect()->route('ventas.index')->with('fail', 'Nota de venta no encontrada');
+        }
     }
-
+    public function anular($id)
+    {
+        return $id;
+        $nota_venta = NotaVenta::find($id);
+        if (isset($nota_venta)) {
+            $nota_venta->estado = false;
+            $nota_venta->save();
+            return redirect()->route('ventas.index')->with('success', 'Venta cancelada '.$nota_venta->id);
+        } else {
+            return redirect()->route('ventas.index')->with('fail', 'Nota de venta no encontrada');
+        }
+    }
     /**
      * Show the form for editing the specified resource.
      *

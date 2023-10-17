@@ -15,9 +15,8 @@ class CreateNotaVentasTable extends Migration
     {
         Schema::create('nota_ventas', function (Blueprint $table) {
             $table->id();
-            $table->boolean('estado');
+            $table->boolean('estado')->default(true);
             $table->decimal('total', 10, 2);
-            $table->text('detalle');
             $table->timestamps();
         });
     }

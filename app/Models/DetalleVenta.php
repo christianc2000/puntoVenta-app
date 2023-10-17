@@ -9,7 +9,7 @@ class DetalleVenta extends Model
 {
     use HasFactory;
     protected $table = 'detalle_ventas';
-    protected $fillabel=[
+    protected $fillable=[
         'precio_unitario',
         'cantidad',
         'sub_total',
